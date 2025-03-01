@@ -14,5 +14,8 @@
     "vite": "^6.2.0",
     "vite-plugin-handlebars": "^2.0.0",
     "vite-plugin-purgecss": "^0.2.12"
+  },
+  "dependencies": {
+    "vite-plugin-minify": "^2.1.0"
   }
 }
