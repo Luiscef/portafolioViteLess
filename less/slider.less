@@ -1,0 +1,31 @@
+.slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+
+    .frametrack {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: flex;
+        flex-direction: row;
+        transition: left 0.5s ease-in-out;
+
+        .slide {
+            position: relative;
+            width: 100vw;
+            height: 70vh;
+
+            img {
+                display: block;
+                width: 100vw;
+                height: 70vh;
+                object-fit: cover;
+                object-position: center center;
+            }
+        }
+    }
+}

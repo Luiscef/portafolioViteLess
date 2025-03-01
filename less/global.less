@@ -1,0 +1,26 @@
+@primary-bg-color:    rgb(40, 40, 40);
+@primary-txt-color: rgb(180, 180, 180);
+
+:root{
+    --primary-bg-color: @primary-bg-color;
+    --primary-txt-color: @primary-txt-color;   
+}
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: @primary-bg-color;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: @primary-txt-color;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    gap: 2rem;
+    margin-top: 2rem;
+}

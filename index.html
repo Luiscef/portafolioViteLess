@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio actualizado</title>
+  <link rel="stylesheet" href="less/main.less" />
+</head>
+
+<body>
+  <header>
+    <h1>Portafolio de proyectos</h1>
+    <nav>
+      <ul>
+        <li><a href="#infoPersonal">Informacion Personal</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="infoPersonal" class="info">
+      <h2>Informacion Personal</h2>
+      <img src="imagenes/yo.jpg" alt="Foto">
+      <p>Nombre: Luis Enrique Franco Cartagena</p>
+      <p>Email: enriquefranco2003@gmail.com</p>
+      <p>Github: <a href="https://github.com/Luiscef" target="_blank">Luiscef</a></p>
+      <p>Teléfono: +504 95064502</p>
+      <p>Estudiante de Ingenieria en Ciencias de la Computación en la Universidad Cátolica de Honduras </p>
+    </section>
+
+    <section id="proyectos" class="proyectos">
+      <h2>Proyectos</h2>
+      <section class="slider">
+        <section class="frametrack">
+          <section class="slide">
+            <picture>
+              <img src="imagenes/cruzroja.jpg" alt="Slide 1" />
+            </picture>
+          </section>
+          <section class="slide">
+            <img src="imagenes/carrusel.jpg" alt="Slide 1" />
+
+          </section>
+          <section class="slide">
+            <img src="imagenes/plan.jpg" alt="Slide 1" />
+          </section>
+          <section class="slide">
+            <img src="imagenes/cajas.jpg" alt="Slide 1" />
+          </section>
+        </section>
+      </section>
+      <section class="container">
+        <div class="card">
+          <h3>Propuesta página de la Cruz Roja</h3>
+          <p>Propuesta de una nueva página para la Cruz Roja Hondureña 2024</p>
+          <img src="imagenes/cruzroja.jpg" alt="Previsualizacion Cruz Roja">
+          <a href="https://josselinpineda.github.io/proyectopw1/inicio.html" target="_blank">Ver más -></a>
+        </div>
+        <div class="card">
+          <h3>Carrusel de ejemplo para una página web</h3>
+          <p>Carrusel de 9 imagenes personalizado para una página web con 2 botones para pasar imagenes manualmente</p>
+          <img src="imagenes/carrusel.jpg" alt="Previsualizacion Carrusel">
+          <a href="https://luiscef.github.io/pw1_202403_lj/parcial3/carrusel/carrusel.html" target="_blank">Ver más
+            -></a>
+        </div>
+        <div class="card">
+          <h3>Plan de estudio de Ingenieria en Ciencias de la Computación</h3>
+          <p>Plan de estudio actual de la Universidad Cátolica de Honduras para la carrera de Ingenieria en Ciencias de
+            la Computación</p>
+          <img src="imagenes/plan.jpg" alt="Previsualizacion Plan de Estudio">
+          <a href="https://luiscef.github.io/pw1_202403_lj/parcial3/planDeEstudio/plan.html" target="_blank">Ver más
+            -></a>
+        </div>
+        <div class="card">
+          <h3>Propuesta de tarjetas</h3>
+          <p>Propuesta de tarjetas para un sitio web de ventas utilizando el modelo de cajas en desarrollo web</p>
+          <img src="imagenes/cajas.jpg" alt="Previsualizacion Cajas">
+          <a href="https://luiscef.github.io/pw1_202403_lj/parcial2/FiestadeModelodeCajas/modelo_cajas.html"
+            target="_blank">Ver más -></a>
+        </div>
+      </section>
+    </section>
+    <script>
+      class SliderController {
+        slider = null;
+        slides = [];
+        framestack = null;
+        intervalTime = 4000;
+        intervalId = null;
+        currentSlide = -1;
+        slideDirection = 1;
+        constructor() {
+          this.slider = document.querySelector('.slider');
+          this.framestack = document.querySelector('.frametrack');
+          this.slides = [...document.querySelectorAll('.frametrack .slide')];
+          this.currentSlide = 0;
+          this.generateUI();
+          this.moveToSlide(0);
+        }
+
+        moveToSlide(slideIndex) {
+          if (this.intervalId) {
+            clearTimeout(this.intervalId);
+          }
+          this.currentSlide = slideIndex;
+          this.framestack.style.left = `-${(this.currentSlide * 100)}vw`;
+          this.tick();
+        }
+
+        tick() {
+          this.intervalId = setTimeout(
+            () => {
+              this.moveToNext();
+            }
+            , this.intervalTime
+          );
+        }
+
+        moveToNext() {
+          if (this.currentSlide + this.slideDirection >= this.slides.length || this.currentSlide + this.slideDirection < 0) {
+            this.slideDirection *= -1;
+          }
+          this.currentSlide += this.slideDirection;
+          this.moveToSlide(this.currentSlide);
+        }
+
+        generateUI() {
+          let btnDerecha = document.createElement("div");
+          btnDerecha.innerHTML = '&gt;';
+          btnDerecha.classList.add('navigation-btn', 'navigate-right');
+          btnDerecha.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.slideDirection = 1;
+            this.moveToNext();
+          });
+
+          let btnIzquierda = document.createElement("div");
+          btnIzquierda.innerHTML = '&lt;';
+          btnIzquierda.classList.add('navigation-btn', 'navigate-left');
+          btnIzquierda.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.slideDirection = -1;
+            this.moveToNext();
+          });
+
+          this.slider.appendChild(btnIzquierda);
+          this.slider.appendChild(btnDerecha);
+
+          let contenedorNavegacion = document.createElement("div");
+          contenedorNavegacion.classList.add('navigation-container');
+          this.slides.forEach((_o, i) => {
+            let slideNavigate = document.createElement('div');
+            slideNavigate.classList.add('navigation-index');
+            slideNavigate.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              this.moveToSlide(i);
+            });
+            contenedorNavegacion.appendChild(slideNavigate);
+          });
+
+          this.slider.appendChild(contenedorNavegacion);
+        }
+      }
+
+
+      document.addEventListener('DOMContentLoaded', onPageLoaded);
+
+
+      function onPageLoaded() {
+        const mySlider = new SliderController();
+      }
+    </script>
+  </main>
+</body>
+
+</html>

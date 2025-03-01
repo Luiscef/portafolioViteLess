@@ -1,0 +1,44 @@
+.card {
+    background-color: #222;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 1s ease, box-shadow 0.3s ease;
+    h3{
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: white;
+        text-align: center;
+    }
+    p{
+        margin-bottom: 1rem;
+    text-align: center;
+    color: rgb(200, 200, 200);
+    }
+    img{
+        width: 100%;
+    height: 50%; 
+    object-fit: cover;
+    object-position: center center;
+    }
+    a{
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: rgb(80, 170, 250);
+        color: white;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: 0.3s ease;
+        &:hover{
+            background-color: rgb(49, 107, 165);
+        }
+    }
+    &:hover{
+        transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    }
+}
+
+
